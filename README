@@ -1,0 +1,67 @@
+Bookingbug
+============
+  Version: edge
+  Author:  Bookingbug team
+  Plugin Homepage: <path goes here>
+  
+    
+  Introduction:
+  -------------
+  
+  BookingBug is the simplest and a robust plugin to embed bookingbug widget to your site.
+  Its implementation requires adding up a single line in views after setting bookingbug.yml.
+  Bookingbug is available to be used with Rails2.0 or above and also it provides the 
+  backward compatibility with previous versions of Rails.
+
+  Copyright (c) 2009 [BookingBug]
+
+
+Installation
+=========================================================================================
+  Bookingbug plugin can be installed by running this command from the application root
+  
+  >> ruby script/plugin install <path goes here>
+
+Setup
+=========================================================================================
+  After installation, follow these simple steps to setup the plugin.
+
+  STEP 1
+  ------
+    Create a bookingbug.yml file in your RAILS_ROOT/config folder. You have to set the following parameters
+    in you bookingbug.yml
+    
+    1) company_id (Id of your company as assigned by bookingbug.)
+    2) event_id (Optional)
+    3) ref_id   (Optional, This a refernce they must have pre-configured with bookingbug to identify this item)
+    4) style    (Possible options are: small, basic, medium, large)
+  	5) scheme	(Possible options are: 1, 2, 3, 4)
+  	6) background_color (6 characters color code)
+	
+	Note: For your assistance, we place an example bookingbug.yml file in plugin's public folder.
+	
+  STEP 2
+  ------
+    Copy resize.html from plugin's public directory to your application's public directory. 
+
+  STEP 3
+  ------
+    Use <%= BookingBug::Widget.bookingbug_widget%> in your view to render bookingbug widget.
+
+
+Examples
+============    
+
+	1) <%= BookingBug::Widget.bookingbug_widget%> This will draw booking bug widget with settings set
+	   in bookingbug.yml
+	
+	2) You can use override the bookingbug.yml settings by passing hash to bookingbug_widget
+	   e.g.
+	   i)   BookingBug::Widget.bookingbug_widget :scheme => 2, :background_color => "CCCCCC"
+	   ii)  BookingBug::Widget.bookingbug_widget :scheme => 3, :style => "large"
+	   iii) BookingBug::Widget.bookingbug_widget :ref_id => 1234
+	   
+
+  Any feedback/comment/issue is welcome!
+
+===========================================================================================

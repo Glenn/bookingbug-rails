@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>Resizing Page</title>
+    <script type="text/javascript">
+      function onLoad() {
+        var params = window.location.search.substring( 1 ).split( '&' );
+        var height;
+        var iframe;
+        for( var i = 0, l = params.length; i < l; ++i ) {
+          var parts = params[i].split( '=' );
+          switch( parts[0] ) {
+          case 'height':
+            height = parseInt( parts[1] );
+            break;
+          case 'iframe':
+            iframe = parts[1];
+            break;
+          }
+        }
+        if( typeof( height ) == 'number' ) {
+          window.top.BBUpdateIFrame( height, iframe );
+        }
+      }
+    window.onload = onLoad;
+    </script>
+  </head>
+  <body>
+    <p>Resizing IFrame...</p>
+  </body>
+</html>
