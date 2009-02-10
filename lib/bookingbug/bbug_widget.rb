@@ -1,7 +1,7 @@
 module BookingBug
   class Widget
     
-    attr_accessor :scheme, :style, :background_color, :company_id, :event_id, :ref_id
+    attr_accessor :scheme, :style, :background_color, :company_id, :event_id, :ref_id, :host
     
     def initialize(values)
       if !values.blank?
@@ -9,6 +9,7 @@ module BookingBug
         @scheme = values[:scheme].blank? ? Widget.get_scheme : values[:scheme]
         @background_color = values[:background_color].blank? ? Widget.get_bg_color : values[:background_color]
         @company_id = Widget.get_company_id
+        @host = Widget.get_host
         @event_id = values[:event_id].blank? ? Widget.get_event_id : values[:event_id]
         @ref_id = values[:ref_id].blank? ? Widget.get_ref_id : values[:ref_id]
       elsif !BBUG_CONFIG.blank? && !BBUG_CONFIG[:bookingbug].blank?
@@ -16,6 +17,7 @@ module BookingBug
         @scheme = BBUG_CONFIG[:bookingbug][:scheme]
         @background_color = BBUG_CONFIG[:bookingbug][:background_color]
         @company_id = BBUG_CONFIG[:bookingbug][:company_id]
+        @host = BBUG_CONFIG[:bookingbug][:host]
         @event_id = BBUG_CONFIG[:bookingbug][:event_id]
         @ref_id = BBUG_CONFIG[:bookingbug][:ref_id]
       else
@@ -39,7 +41,7 @@ module BookingBug
         script += "&ref_id=#{widget.ref_id}"
         script += "&bgcol=#{widget.background_color}"
         script += "&scheme=#{widget.scheme}"
-        script += "&resize=http://localhost:3001/resize.html"
+        script += "&resize=#{widget.host}/resize.html"
         script += "&style=#{widget.style} \">"
         script += "</script>"
         return script
@@ -74,6 +76,10 @@ module BookingBug
     
     def self.get_company_id
       return !BBUG_CONFIG.blank? && !BBUG_CONFIG[:bookingbug].blank? ? BBUG_CONFIG[:bookingbug][:company_id] : nil
+    end
+    
+    def self.get_host
+      return !BBUG_CONFIG.blank? && !BBUG_CONFIG[:bookingbug].blank? ? BBUG_CONFIG[:bookingbug][:host] : nil
     end
     
     def self.get_event_id

@@ -34,9 +34,10 @@ Setup
     1) company_id (Id of your company as assigned by bookingbug.)
     2) event_id (Optional)
     3) ref_id   (Optional, This a refernce they must have pre-configured with bookingbug to identify this item)
-    4) style    (Possible options are: small, basic, medium, large)
-  	5) scheme	(Possible options are: 1, 2, 3, 4)
-  	6) background_color (6 characters color code)
+    4) host 	(Your site URL)
+    5) style    (Possible options are: small, basic, medium, large)
+  	6) scheme	(Possible options are: 1, 2, 3, 4)
+  	7) background_color (6 characters color code)
 	
 	Note: For your assistance, we place an example bookingbug.yml file in plugin's public folder.
 	
