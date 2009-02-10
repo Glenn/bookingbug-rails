@@ -39,7 +39,7 @@ module BookingBug
         script += "&ref_id=#{widget.ref_id}"
         script += "&bgcol=#{widget.background_color}"
         script += "&scheme=#{widget.scheme}"
-        #script += "&resize='http://localhost:3001/resize.html'"
+        script += "&resize=http://localhost:3001/resize.html"
         script += "&style=#{widget.style} \">"
         script += "</script>"
         return script

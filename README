@@ -55,7 +55,7 @@ Examples
 	1) <%= BookingBug::Widget.bookingbug_widget%> This will draw booking bug widget with settings set
 	   in bookingbug.yml
 	
-	2) You can use override the bookingbug.yml settings by passing hash to bookingbug_widget
+	2) You can override the bookingbug.yml settings by passing a hash to bookingbug_widget
 	   e.g.
 	   i)   BookingBug::Widget.bookingbug_widget :scheme => 2, :background_color => "CCCCCC"
 	   ii)  BookingBug::Widget.bookingbug_widget :scheme => 3, :style => "large"
