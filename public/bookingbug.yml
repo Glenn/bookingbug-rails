@@ -4,4 +4,5 @@
   :style: basic
   :scheme: 1
   :background_color: FFFFFF
+  :host: localhost:3001
   

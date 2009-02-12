@@ -1,7 +1,6 @@
 module BookingBug
   class Widget
-    
-    attr_accessor :scheme, :style, :background_color, :company_id, :event_id, :ref_id, :host
+    attr_accessor :scheme, :style, :background_color, :company_id, :host
     
     def initialize(values)
       if !values.blank?
@@ -10,43 +9,17 @@ module BookingBug
         @background_color = values[:background_color].blank? ? Widget.get_bg_color : values[:background_color]
         @company_id = Widget.get_company_id
         @host = Widget.get_host
-        @event_id = values[:event_id].blank? ? Widget.get_event_id : values[:event_id]
-        @ref_id = values[:ref_id].blank? ? Widget.get_ref_id : values[:ref_id]
       elsif !BBUG_CONFIG.blank? && !BBUG_CONFIG[:bookingbug].blank?
         @style = BBUG_CONFIG[:bookingbug][:style]
         @scheme = BBUG_CONFIG[:bookingbug][:scheme]
         @background_color = BBUG_CONFIG[:bookingbug][:background_color]
         @company_id = BBUG_CONFIG[:bookingbug][:company_id]
-        @host = BBUG_CONFIG[:bookingbug][:host]
-        @event_id = BBUG_CONFIG[:bookingbug][:event_id]
-        @ref_id = BBUG_CONFIG[:bookingbug][:ref_id]
+        @host = Widget.get_host
       else
         @style = "basic"
         @scheme = 1
         @background_color = "FFFFFF"
-      end
-    end
-    
-    def self.bookingbug_widget(values = {})
-      if BookingBug::Widget.validate_company
-        widget = BookingBug::Widget.new(values)
-        if BookingBug::Widget.validate_event || BookingBug::Widget.validate_ref_no
-          script = "<script type=\"text/javascript\" src=\"http://#{BBUG_URL}/widget/event"
-          script += "?comp_id=#{widget.company_id}"
-        else
-          script = "<script type=\"text/javascript\" src=\"http://#{BBUG_URL}/widget/all"
-          script += "?id=#{widget.company_id}"
-        end
-        script += "&event_id=#{widget.event_id}"
-        script += "&ref_id=#{widget.ref_id}"
-        script += "&bgcol=#{widget.background_color}"
-        script += "&scheme=#{widget.scheme}"
-        script += "&resize=#{widget.host}/resize.html"
-        script += "&style=#{widget.style} \">"
-        script += "</script>"
-        return script
-      else
-        return "<div style='border: 1px solid #AAAAAA; font-weight: bold; padding: 5px;'>Something went wrong. This is probably due to invalid credentails.</div>"
+        @host = Widget.get_host
       end
     end
     
@@ -79,7 +52,7 @@ module BookingBug
     end
     
     def self.get_host
-      return !BBUG_CONFIG.blank? && !BBUG_CONFIG[:bookingbug].blank? ? BBUG_CONFIG[:bookingbug][:host] : nil
+      return !BBUG_CONFIG.blank? && !BBUG_CONFIG[:bookingbug].blank? ? (BBUG_CONFIG[:bookingbug][:host] + "/resize.html") : nil
     end
     
     def self.get_event_id
@@ -89,6 +62,18 @@ module BookingBug
     def self.get_ref_id
       return !BBUG_CONFIG.blank? && !BBUG_CONFIG[:bookingbug].blank? ? BBUG_CONFIG[:bookingbug][:ref_id] : nil
     end
+    
+    def get_params_string(values= {})
+      params = ""
+      count = 0
+      values.each do |value|
+        count == 0 ? (params = "?#{value[0]}=#{value[1]}") : (params += "&#{value[0]}=#{value[1]}")
+        count += 1
+      end
+      return params
+    end
+    
   end
+  
 end
 
