@@ -23,7 +23,7 @@ module BookingBug
         script += "</script>"
         return script
       else
-        return "<div style='border: 1px solid #AAAAAA; font-weight: bold; padding: 5px;'>Something went wrong. We are unable to render BookingBug widget. This is probably due to invalid or missing credentails.</div>"
+        return event_widget.show_error
       end
     end
     

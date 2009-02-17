@@ -15,7 +15,7 @@ module BookingBug
         script += "</script>"
         return script
       else
-        return "<div style='border: 1px solid #AAAAAA; font-weight: bold; padding: 5px;'>Something went wrong. This is probably due to invalid credentails.</div>"
+        return smart_widget.show_error
       end
     end
     

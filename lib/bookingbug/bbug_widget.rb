@@ -73,6 +73,10 @@ module BookingBug
       return params
     end
     
+    def show_error
+      return "<div style='border: 1px solid #AAAAAA; font-weight: bold; padding: 5px;'>Something went wrong. We are unable to render BookingBug widget. This is probably due to invalid or missing credentails.</div>"
+    end
+    
   end
   
 end
