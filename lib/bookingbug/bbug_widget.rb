@@ -10,9 +10,9 @@ module BookingBug
         @company_id = Widget.get_company_id
         @host = Widget.get_host
       elsif !BBUG_CONFIG.blank? && !BBUG_CONFIG[:bookingbug].blank?
-        @style = BBUG_CONFIG[:bookingbug][:style]
-        @scheme = BBUG_CONFIG[:bookingbug][:scheme]
-        @background_color = BBUG_CONFIG[:bookingbug][:background_color]
+        @style = BBUG_CONFIG[:bookingbug][:style].blank? ? "basic" : BBUG_CONFIG[:bookingbug][:style]
+        @scheme = BBUG_CONFIG[:bookingbug][:scheme].blank? ? 1 : BBUG_CONFIG[:bookingbug][:scheme]
+        @background_color = BBUG_CONFIG[:bookingbug][:background_color].blank? ? "FFF" : BBUG_CONFIG[:bookingbug][:background_color]
         @company_id = BBUG_CONFIG[:bookingbug][:company_id]
         @host = Widget.get_host
       else
@@ -36,15 +36,15 @@ module BookingBug
     end
     
     def self.get_scheme
-      return !BBUG_CONFIG.blank? && !BBUG_CONFIG[:bookingbug].blank? ? BBUG_CONFIG[:bookingbug][:scheme] : 1
+      return !BBUG_CONFIG.blank? && !BBUG_CONFIG[:bookingbug].blank? && !BBUG_CONFIG[:bookingbug][:scheme].blank? ? BBUG_CONFIG[:bookingbug][:scheme] : 1
     end
     
     def self.get_style
-      return !BBUG_CONFIG.blank? && !BBUG_CONFIG[:bookingbug].blank? ? BBUG_CONFIG[:bookingbug][:style] : "basic"
+      return !BBUG_CONFIG.blank? && !BBUG_CONFIG[:bookingbug].blank? && !BBUG_CONFIG[:bookingbug][:style].blank? ? BBUG_CONFIG[:bookingbug][:style] : "basic"
     end
     
     def self.get_bg_color
-      return !BBUG_CONFIG.blank? && !BBUG_CONFIG[:bookingbug].blank? ? BBUG_CONFIG[:bookingbug][:background_color] : "FFFFFF"
+      return !BBUG_CONFIG.blank? && !BBUG_CONFIG[:bookingbug].blank? && !BBUG_CONFIG[:bookingbug][:background_color].blank? ? BBUG_CONFIG[:bookingbug][:background_color] : "FFFFFF"
     end
     
     def self.get_company_id
@@ -52,7 +52,7 @@ module BookingBug
     end
     
     def self.get_host
-      return !BBUG_CONFIG.blank? && !BBUG_CONFIG[:bookingbug].blank? ? (BBUG_CONFIG[:bookingbug][:host] + "/resize.html") : nil
+      return !BBUG_CONFIG.blank? && !BBUG_CONFIG[:bookingbug].blank? ? (BBUG_CONFIG[:bookingbug][:host].to_s + "/resize.html") : nil
     end
     
     def self.get_event_id

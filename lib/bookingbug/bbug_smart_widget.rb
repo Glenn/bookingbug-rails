@@ -14,6 +14,7 @@ module BookingBug
         script += "\">"
         script += "</script>"
         return script
+        #render :action => "smart_widget.html.erb"
       else
         return smart_widget.show_error
       end
