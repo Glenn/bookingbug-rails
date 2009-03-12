@@ -1,4 +1,4 @@
-module BookingBug
+module Bookingbug
   class Widget
     attr_accessor :scheme, :style, :background_color, :company_id, :host
     
@@ -8,19 +8,17 @@ module BookingBug
         @scheme = values[:scheme].blank? ? Widget.get_scheme : values[:scheme]
         @background_color = values[:background_color].blank? ? Widget.get_bg_color : values[:background_color]
         @company_id = Widget.get_company_id
-        @host = Widget.get_host
       elsif !BBUG_CONFIG.blank? && !BBUG_CONFIG[:bookingbug].blank?
         @style = BBUG_CONFIG[:bookingbug][:style].blank? ? "basic" : BBUG_CONFIG[:bookingbug][:style]
         @scheme = BBUG_CONFIG[:bookingbug][:scheme].blank? ? 1 : BBUG_CONFIG[:bookingbug][:scheme]
         @background_color = BBUG_CONFIG[:bookingbug][:background_color].blank? ? "FFF" : BBUG_CONFIG[:bookingbug][:background_color]
         @company_id = BBUG_CONFIG[:bookingbug][:company_id]
-        @host = Widget.get_host
       else
         @style = "basic"
         @scheme = 1
         @background_color = "FFFFFF"
-        @host = Widget.get_host
       end
+      @host = Widget.get_host
     end
     
     def self.validate_company
@@ -52,7 +50,7 @@ module BookingBug
     end
     
     def self.get_host
-      return !BBUG_CONFIG.blank? && !BBUG_CONFIG[:bookingbug].blank? ? (BBUG_CONFIG[:bookingbug][:host].to_s + "/resize.html") : nil
+      return !BBUG_CONFIG.blank? && !BBUG_CONFIG[:bookingbug].blank? ? (Bookingbug::bbug_host + "/resize.html") : nil
     end
     
     def self.get_event_id

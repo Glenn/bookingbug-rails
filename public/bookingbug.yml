@@ -1,8 +1,8 @@
 :bookingbug:
   :company_id: 19
   :ref_id: qweqwe
+  :site: www
   :style: basic
   :scheme: 1
   :background_color: FFFFFF
-  :host: localhost:3001
   

@@ -47,20 +47,24 @@ Setup
 
   STEP 3
   ------
-    Use <%= BookingBug::Widget.bookingbug_widget%> in your view to render bookingbug widget.
+    Use <%= render_smart_widget %> in your view to render bookingbug smart widget and 
+    <%= render_event_widget %> to render bookingbug event widget.
 
 
 Examples
 ============    
 
-	1) <%= BookingBug::Widget.bookingbug_widget%> This will draw booking bug widget with settings set
+	1) <%= render_smart_widget %> This will draw booking bug widget smart widget with settings set
 	   in bookingbug.yml
 	
-	2) You can override the bookingbug.yml settings by passing a hash to bookingbug_widget
+	2) <%= render_event_widget %> This will draw booking bug widget event widget with settings set
+	   in bookingbug.yml
+	
+	2) You can override the bookingbug.yml settings by passing a hash to render_smart_widget method
 	   e.g.
-	   i)   BookingBug::Widget.bookingbug_widget :scheme => 2, :background_color => "CCCCCC"
-	   ii)  BookingBug::Widget.bookingbug_widget :scheme => 3, :style => "large"
-	   iii) BookingBug::Widget.bookingbug_widget :ref_id => 1234
+	   i)   render_smart_widget :scheme => 2, :background_color => "CCCCCC"
+	   ii)  render_event_widget :scheme => 3, :style => "large"
+	   iii) render_smart_widget :ref_id => 1234
 	   
 
   Any feedback/comment/issue is welcome!
