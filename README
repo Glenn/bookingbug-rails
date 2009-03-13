@@ -2,7 +2,7 @@ Bookingbug
 ============
   Version: edge
   Author:  Bookingbug team
-  Plugin Homepage: <path goes here>
+  Plugin Homepage: git://github.com/Glenn/bookingbug-rails.git
   
     
   Introduction:
@@ -20,7 +20,7 @@ Installation
 =========================================================================================
   Bookingbug plugin can be installed by running this command from the application root
   
-  >> ruby script/plugin install <path goes here>
+  >> ruby script/plugin install git://github.com/Glenn/bookingbug-rails.git
 
 Setup
 =========================================================================================
